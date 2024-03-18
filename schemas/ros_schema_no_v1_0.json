@@ -7,7 +7,8 @@
   "properties": {
     "skjemaVersjon": {
       "description": "Versjon av skjema",
-      "type": "string"
+      "type": "string",
+      "default": "1.0"
     },
     "tittel": {
       "description": "Tittel på analysen",
