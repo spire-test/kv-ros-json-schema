@@ -8,22 +8,73 @@
     "skjemaVersjon": {
       "description": "Versjon av skjema",
       "type": "string",
-      "default": "1.0"
+      "default": "'1.0'"
     },
     "tittel": {
       "description": "Tittel på analysen",
-      "type": "string"
+      "type": "string",
+      "default": "''"
     },
     "omfang": {
       "description": "Omfang av analysen",
       "type": "string"
+    },
+    "verdivurderinger": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "propertyNames": {
+          "minLength": 3
+        },
+        "properties": {
+          "beskrivelse": {
+            "type": "string"
+          },
+          "konfidensialitet": {
+            "type": "string",
+            "enum": [
+              "Åpen",
+              "Intern",
+              "Fortrolig",
+              "Strengt fortrolig"
+            ]
+          },
+          "integritet": {
+            "type": "string",
+            "enum": [
+              "Ingen betydning",
+              "Forventet",
+              "Avhengig",
+              "Kritisk"
+            ]
+          },
+          "tilgjengelighet": {
+            "type": "string",
+            "enum": [
+              "Ingen betydning",
+              "2 dager",
+              "4 timer",
+              "Umiddelbar"
+            ]
+          }
+        },
+        "required": [
+          "beskrivelse",
+          "konfidensialitet",
+          "integritet",
+          "tilgjengelighet"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "uniqueItems": true
     },
     "scenarier": {
       "type": "array",
       "items": {
         "type": "object",
         "propertyNames": {
-          "minLength": 2
+          "minLength": 3
         },
         "properties": {
           "ID": {
@@ -90,6 +141,9 @@
                   "type": "string",
                   "pattern": "^[a-zA-Z0-9]{3}$"
                 },
+                "tittel": {
+                  "type": "string"
+                },
                 "beskrivelse": {
                   "type": "string"
                 },
@@ -112,7 +166,6 @@
                 }
               },
               "required": [
-                "ID",
                 "beskrivelse",
                 "tiltakseier",
                 "frist",
@@ -126,7 +179,6 @@
           }
         },
         "required": [
-          "ID",
           "tittel",
           "beskrivelse",
           "sistEndret",
@@ -146,6 +198,7 @@
   "required": [
     "skjemaVersjon",
     "tittel",
+    "omfang",
     "scenarier"
   ],
   "additionalProperties": false,
