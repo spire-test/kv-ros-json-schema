@@ -8,7 +8,7 @@
     "skjemaVersjon": {
       "description": "Versjon av skjema",
       "type": "string",
-      "default": "'1.0'"
+      "default": "'1_0'"
     },
     "tittel": {
       "description": "Tittel på analysen",
@@ -73,120 +73,17 @@
       "type": "array",
       "items": {
         "type": "object",
-        "propertyNames": {
-          "minLength": 2
-        },
         "properties": {
-          "ID": {
-            "type": "string",
-            "pattern": "^[a-zA-Z0-9]{3}$"
-          },
           "tittel": {
             "type": "string"
           },
-          "beskrivelse": {
-            "type": "string"
-          },
-          "url": {
-            "$ref": "#/$defs/url"
-          },
-          "sistEndret": {
-            "type": "string",
-            "format": "date"
-          },
-          "trusselaktører": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "Datasnok",
-                "Hacktivist",
-                "Uheldig ansatt",
-                "Innside-aktør",
-                "Organiserte kriminelle",
-                "Terroristorganisasjon",
-                "Nasjon/stat"
-              ]
-            }
-          },
-          "sårbarheter": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "Kompromittert adminbruker",
-                "Sårbarhet i avhengighet",
-                "Lekket hemmelighet",
-                "Feilkonfigurering",
-                "Klussing med input",
-                "Benekte brukerhandling",
-                "Informasjonslekkasje",
-                "Tjenestenekt",
-                "Rettighetseskalering"
-              ]
-            }
-          },
-          "risiko": {
-            "$ref": "#/$defs/risiko"
-          },
-          "tiltak": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "propertyNames": {
-                "minLength": 2
-              },
-              "properties": {
-                "ID": {
-                  "type": "string",
-                  "pattern": "^[a-zA-Z0-9]{3}$"
-                },
-                "tittel": {
-                  "type": "string"
-                },
-                "beskrivelse": {
-                  "type": "string"
-                },
-                "tiltakseier": {
-                  "type": "string"
-                },
-                "frist": {
-                  "type": "string",
-                  "format": "date"
-                },
-                "status": {
-                  "type": "string",
-                  "enum": [
-                    "Ikke startet",
-                    "Startet",
-                    "På vent",
-                    "Fullført",
-                    "Avbrutt"
-                  ]
-                }
-              },
-              "required": [
-                "beskrivelse",
-                "tiltakseier",
-                "frist",
-                "status"
-              ],
-              "additionalProperties": false
-            }
-          },
-          "restrisiko": {
-            "$ref": "#/$defs/risiko"
+          "scenario": {
+            "$ref": "#/$defs/scenario"
           }
         },
         "required": [
           "tittel",
-          "beskrivelse",
-          "sistEndret",
-          "trusselaktører",
-          "sårbarheter",
-          "risiko",
-          "tiltak",
-          "restrisiko"
+          "scenario"
         ],
         "additionalProperties": false
       }
@@ -242,6 +139,128 @@
       "type": "string",
       "format": "uri",
       "pattern": "^https?://"
+    },
+    "scenario": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]{3}$"
+        },
+        "beskrivelse": {
+          "type": "string"
+        },
+        "url": {
+          "$ref": "#/$defs/url"
+        },
+        "sistEndret": {
+          "type": "string",
+          "format": "date"
+        },
+        "trusselaktører": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Datasnok",
+              "Hacktivist",
+              "Uheldig ansatt",
+              "Innside-aktør",
+              "Organiserte kriminelle",
+              "Terroristorganisasjon",
+              "Nasjon/stat"
+            ]
+          }
+        },
+        "sårbarheter": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Kompromittert adminbruker",
+              "Sårbarhet i avhengighet",
+              "Lekket hemmelighet",
+              "Feilkonfigurering",
+              "Klussing med input",
+              "Benekte brukerhandling",
+              "Informasjonslekkasje",
+              "Tjenestenekt",
+              "Rettighetseskalering"
+            ]
+          }
+        },
+        "risiko": {
+          "$ref": "#/$defs/risiko"
+        },
+        "tiltak": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tittel": {
+                "type": "string"
+              },
+              "oppgave": {
+                "$ref": "#/$defs/tiltak"
+              }
+            },
+            "required": [
+              "tittel",
+              "oppgave"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "restrisiko": {
+          "$ref": "#/$defs/risiko"
+        }
+      },
+      "required": [
+        "beskrivelse",
+        "sistEndret",
+        "trusselaktører",
+        "sårbarheter",
+        "risiko",
+        "tiltak",
+        "restrisiko"
+      ],
+      "additionalProperties": false
+    },
+    "tiltak": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]{3}$"
+        },
+        "beskrivelse": {
+          "type": "string"
+        },
+        "tiltakseier": {
+          "type": "string"
+        },
+        "frist": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Ikke startet",
+            "Startet",
+            "På vent",
+            "Fullført",
+            "Avbrutt"
+          ]
+        }
+      },
+      "required": [
+        "beskrivelse",
+        "tiltakseier",
+        "frist",
+        "status"
+      ],
+      "additionalProperties": false
     }
   }
 }
