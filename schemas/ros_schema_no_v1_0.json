@@ -212,6 +212,7 @@
         }
       },
       "required": [
+        "ID",
         "beskrivelse",
         "sistEndret",
         "trusselaktører",
@@ -251,6 +252,7 @@
         }
       },
       "required": [
+        "ID",
         "beskrivelse",
         "tiltakseier",
         "frist",
