@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://kartverket.no/ros/1.0/no/schema.json",
+  "$id": "https://raw.githubusercontent.com/spire-test/kv-ros-json-schema/main/schemas/ros_schema_no_v3_0.json",
   "title": "ROS",
   "description": "Skjema for risiko- og sårbarhetsanalyser",
   "type": "object",
@@ -8,7 +8,7 @@
     "skjemaVersjon": {
       "description": "Versjon av skjema",
       "type": "string",
-      "default": "'1_0'"
+      "default": "'3_0'"
     },
     "tittel": {
       "description": "Tittel på analysen",
