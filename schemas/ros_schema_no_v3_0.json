@@ -105,24 +105,12 @@
         "sannsynlighet": {
           "description": "Antall hendelser/dag",
           "type": "number",
-          "enum": [
-            0.01,
-            0.1,
-            1,
-            50,
-            300
-          ]
+          "minimum": 0
         },
         "konsekvens": {
           "description": "Beløp i kroner/hendelse",
           "type": "number",
-          "enum": [
-            1000,
-            30000,
-            1000000,
-            30000000,
-            1000000000
-          ]
+          "minimum": 0
         }
       },
       "required": [
