@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/spire-test/kv-ros-json-schema/main/schemas/ros_schema_no_v3_0.json",
+  "$id": "https://raw.githubusercontent.com/spire-test/kv-ros-json-schema/main/schemas/ros_schema_no_v3_1.json",
   "title": "ROS",
   "description": "Skjema for risiko- og sårbarhetsanalyser",
   "type": "object",
@@ -8,7 +8,7 @@
     "skjemaVersjon": {
       "description": "Versjon av skjema",
       "type": "string",
-      "default": "'3.0'"
+      "default": "'3.1'"
     },
     "tittel": {
       "description": "Tittel på analysen",
@@ -104,12 +104,41 @@
         "sannsynlighet": {
           "description": "Antall hendelser/dag",
           "type": "number",
-          "minimum": 0
+          "anyOf": [
+            {
+              "type": "number",
+              "enum": [
+                0.01,
+                0.1,
+                1,
+                50,
+                300
+              ]
+            },
+            {
+              "type": "number",
+              "minimum": 0
+            }
+          ]
         },
         "konsekvens": {
           "description": "Beløp i kroner/hendelse",
-          "type": "number",
-          "minimum": 0
+          "anyOf": [
+            {
+              "type": "number",
+              "enum": [
+                1000,
+                30000,
+                1000000,
+                30000000,
+                1000000000
+              ]
+            },
+            {
+              "type": "number",
+              "minimum": 0
+            }
+          ]
         }
       },
       "required": [
@@ -128,7 +157,7 @@
       "properties": {
         "ID": {
           "type": "string",
-          "pattern": "^[a-zA-Z0-9]{3}$"
+          "pattern": "^[a-zA-Z0-9]{5,}$"
         },
         "beskrivelse": {
           "type": "string"
@@ -201,7 +230,6 @@
       "required": [
         "ID",
         "beskrivelse",
-        "sistEndret",
         "trusselaktører",
         "sårbarheter",
         "risiko",
@@ -215,7 +243,7 @@
       "properties": {
         "ID": {
           "type": "string",
-          "pattern": "^[a-zA-Z0-9]{3}$"
+          "pattern": "^[a-zA-Z0-9]{5,}$"
         },
         "beskrivelse": {
           "type": "string"

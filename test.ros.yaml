@@ -1,0 +1,28 @@
+skjemaVersjon: '3.1'
+tittel       : ''
+omfang       : ''
+scenarier    :
+  -
+    tittel  : ''
+    scenario:
+      ID            : 1sW
+      beskrivelse   : ''
+      trusselaktører:
+        - Datasnok
+      sårbarheter   :
+        - Benekte brukerhandling
+      risiko        :
+        sannsynlighet: 0
+        konsekvens   :
+      tiltak        :
+        -
+          tittel :
+          oppgave:
+            ID         : 4S2
+            beskrivelse: ''
+            tiltakseier: ''
+            frist      : ''
+            status     : Ikke startet
+      restrisiko    :
+        sannsynlighet: -1
+        konsekvens   : 0
