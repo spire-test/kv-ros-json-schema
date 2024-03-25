@@ -165,10 +165,6 @@
         "url": {
           "$ref": "#/$defs/url"
         },
-        "sistEndret": {
-          "type": "string",
-          "format": "date"
-        },
         "trusselaktører": {
           "type": "array",
           "items": {
